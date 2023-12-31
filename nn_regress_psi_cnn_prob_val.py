@@ -26,17 +26,17 @@ class MechMNISTDataset(Dataset):
 		self.args = args
 		character = num_to_string(self.args.predict_character)
 		if self.train == 'Train':
-			self.data = np.load('image_bi.npy')
+			self.data = np.load('./data/image_bi.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '.npy').reshape(-1,1).astype(float)
 		elif self.train == 'Val':
-			self.data = np.load('image_bi_test.npy')
+			self.data = np.load('./data/image_bi_test.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '_test.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '_test.npy').reshape(-1,1).astype(float)
 		else:
-			self.data = np.load('image_bi_val.npy')
+			self.data = np.load('./data/image_bi_val.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '_test_test.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '_test_test.npy').reshape(-1,1).astype(float)
 		self.transform = transform
 		self.target_transform = target_transform
 		
@@ -69,19 +69,13 @@ class Net(nn.Module):
 	def __init__(self):
 		super(Net, self).__init__()
 		self.conv1 = nn.Conv2d(1, 32, 3, 1)
-		self.batchnorm1 = nn.BatchNorm2d(32)
 		self.conv2 = nn.Conv2d(32, 64, 3, 1)
 		self.conv3 = nn.Conv2d(64, 128, 3, 1)
-		self.batchnorm2 = nn.BatchNorm2d(128)
 		self.conv4 = nn.Conv2d(128, 256, 3, 1)
 		self.fc1 = nn.Linear(4*4*256, 500)
 		self.fc2 = nn.Linear(500, 1)
 		self.flatten = nn.Flatten()
 
-		self.conv1s = nn.Conv2d(1, 32, 3, 1)
-		self.conv2s = nn.Conv2d(32, 64, 3, 1)
-		self.conv3s = nn.Conv2d(64, 128, 3, 1)
-		self.conv4s = nn.Conv2d(128, 256, 3, 1)
 		self.fc1s = nn.Linear(4*4*256, 512)
 		self.fc2s = nn.Linear(512, 64)
 		self.fc3s = nn.Linear(64, 1)

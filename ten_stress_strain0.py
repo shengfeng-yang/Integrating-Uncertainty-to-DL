@@ -25,20 +25,19 @@ def stress_strain(df,x):
     UTS_strain = np.argmax(np.array(df.iloc[:,2]))*0.0005
     print ('UTS',UTS)
     print ('UTS_strain',UTS_strain)
-    print('xxxxxxx')
     # plt.rcParams.update({'font.size': 14,'font.weight': 'bold'})
     plt.plot(df.iloc[:,0],df.iloc[:,2])
     plt.xlabel('Strain',fontsize=14,fontweight='bold')
     plt.ylabel('Stress/GPa',fontsize=14,fontweight='bold')
     plt.tight_layout()
-    plt.savefig(r'/N/project/polycrystalGAN/MNIST_data/Cu_Zr/large_model/no_inverse/ten_stress_strain_curve_image/'+str(x+1)+'.jpg',dpi=600)
+    plt.savefig(r'./ten_stress_strain_curve_image/'+str(x+1)+'.jpg',dpi=600)
     plt.show()
     plt.close()
     return (yeild_strain,yeild_stress,UTS,UTS_strain)
 is_train = False
 number_of_samples = 100
 start_number = 8001
-PATH = r'/N/project/polycrystalGAN/MNIST_data/Cu_Zr/large_model/no_inverse/'
+PATH = r'./'
 file_name = r'/tension-strain-stress.txt'
 yeild_stress = np.zeros(number_of_samples)
 yeild_strain = np.zeros(number_of_samples)

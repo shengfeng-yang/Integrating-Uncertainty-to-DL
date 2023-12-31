@@ -13,7 +13,7 @@ import numpy as np
 
 # generate the input for the ML model
 
-f = gzip.open('/N/project/polycrystalGAN/MNIST_data/Cu_Zr/train-images-idx3-ubyte.gz','r')
+f = gzip.open('./train-images-idx3-ubyte.gz','r')
 
 image_size = 28
 num_images =10001

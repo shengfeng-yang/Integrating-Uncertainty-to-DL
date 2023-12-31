@@ -23,17 +23,17 @@ class MechMNISTDataset(Dataset):
 		self.args = args
 		character = num_to_string(self.args.predict_character)
 		if self.train == 'Train':
-			self.data = np.load('image_bi.npy')
+			self.data = np.load('./data/image_bi.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '.npy').reshape(-1,1).astype(float)
 		elif self.train == 'Val':
-			self.data = np.load('image_bi_test.npy')
+			self.data = np.load('./data/image_bi_test.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '_test.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '_test.npy').reshape(-1,1).astype(float)
 		else:
-			self.data = np.load('image_bi_val.npy')
+			self.data = np.load('./data/image_bi_val.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '_test_test.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '_test_test.npy').reshape(-1,1).astype(float)
 		self.transform = transform
 		self.target_transform = target_transform
 		
@@ -67,10 +67,8 @@ class Net(nn.Module):
 		super(Net, self).__init__()
 		self.flatten = nn.Flatten()
 		self.fc1 = nn.Linear(784, 1568)
-		self.batchnorm1 = nn.BatchNorm1d(784)
 		self.fc2 = nn.Linear(1568,1568)
 		self.fc3 = nn.Linear(1568,784)
-		self.batchnorm2 = nn.BatchNorm1d(256)
 		self.fc4 = nn.Linear(784, 1)
 
 	def forward(self, x):

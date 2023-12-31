@@ -17,7 +17,7 @@ import numpy as np
 
 ###### read images from MNIST ######
 
-f = gzip.open('/N/project/polycrystalGAN/MNIST_data/Cu_Zr/train-images-idx3-ubyte.gz','r')
+f = gzip.open('./train-images-idx3-ubyte.gz','r')
 
 image_size = 28
 num_images =10001
@@ -54,7 +54,7 @@ for i in range (28):
         else:
             image_bi_b.append([i,j])
 #### show labels of MNIST ####
-f = gzip.open('/N/project/polycrystalGAN/MNIST_data/Cu_Zr/train-labels-idx1-ubyte.gz','r')
+f = gzip.open('./train-labels-idx1-ubyte.gz','r')
 f.read(8)
 for i in range(0,50):   
     buf = f.read(1)

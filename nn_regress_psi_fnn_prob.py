@@ -23,17 +23,17 @@ class MechMNISTDataset(Dataset):
 		self.args = args
 		character = num_to_string(self.args.predict_character)
 		if self.train == 'Train':
-			self.data = np.load('image_bi.npy')
+			self.data = np.load('./data/image_bi.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '.npy').reshape(-1,1).astype(float)
 		elif self.train == 'Val':
-			self.data = np.load('image_bi_test.npy')
+			self.data = np.load('./data/image_bi_test.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '_test.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '_test.npy').reshape(-1,1).astype(float)
 		else:
-			self.data = np.load('image_bi_val.npy')
+			self.data = np.load('./data/image_bi_val.npy')
 			self.data = self.data.reshape((self.data.shape[0],28,28)).astype(float)
-			self.targets = np.load('ten_' + character + '_test_test.npy').reshape(-1,1).astype(float)
+			self.targets = np.load('./data/ten_' + character + '_test_test.npy').reshape(-1,1).astype(float)
 		self.transform = transform
 		self.target_transform = target_transform
 		
